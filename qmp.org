@@ -1,0 +1,132 @@
+#+BEGIN_SRC plantuml :file img/qmp2.png
+  @startuml
+  Usuario -> Calzado : cambiarMaterial
+  Usuario -> Calzado : cambiarColor
+  @enduml
+#+END_SRC
+
+#+BEGIN_SRC plantuml :file img/qmp2.png
+  @startuml
+  Usuario -> Calzado : cambiarMaterial
+  Usuario -> Calzado : cambiarColor
+  @enduml
+#+END_SRC
+
+#+BEGIN_SRC plantuml :file img/qmp2.png
+  note right of Atuendo: Atuendo a = construirAtuendo()
+  note right of Prenda : return new Prenda()
+  note top of Accesorio : Prenda p = construirPrenda()
+
+  ParteSuperior <-up- Atuendo
+  ParteInferior <-up- Atuendo
+  Accesorio <-up- Atuendo
+  Calzado <-up- Atuendo
+
+  Prenda <.up. Calzado
+  Prenda <.up. Accesorio
+  Prenda <.up. ParteInferior
+  Prenda <.up. ParteSuperior
+
+  Color <-up- Prenda
+  Material <-up- Prenda
+  Tipo <-up- Prenda
+
+  Atuendo <-left- Cliente
+
+  class Cliente
+
+  abstract class Atuendo{
+          +construirAtuendo() : Atuendo
+          elegirParteSuperior()
+          elegirParteInferior()
+          elegirCalzado()
+          elegirAccesorio()
+  }
+
+  abstract class Accesorio{
+          +construirPrenda() : Prenda
+          elegirColor()
+          elegirMaterial()
+          elegirTipo()
+  }
+  abstract class Calzado{
+          +construirPrenda() : Prenda
+          elegirColor()
+          elegirMaterial()
+          elegirTipo()
+  }
+  abstract class ParteSuperior{
+          +construirPrenda() : Prenda
+          elegirColor()
+          elegirMaterial()
+          elegirTipo()
+  }
+
+  abstract class ParteInferior{
+          +construirPrenda() : Prenda
+          elegirColor()
+          elegirMaterial()
+          elegirTipo()
+  }
+
+  class Prenda{
+          +construirPrenda() : Prenda
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
+  }
+
+  enum Color
+  enum Material
+  enum Tipo
+#+END_SRC
+
+#+RESULTS:
+[[file:img/qmp2.png]]
+
+
+#+BEGIN_SRC plantuml :file img/qmp.png
+  @startuml
+  interface Atuendo{
+          +construirAtuendo() : Atuendo
+          #abstract void elegirColor(Prenda prenda)
+          #abstract void elegirTipo(Prenda prenda)
+          #abstract void elegirMaterial(Prenda prenda)
+  }
+
+  abstract class Calzado{
+          +crearPrenda()
+  }
+  abstract class Accesorio{
+          +crearPrenda()
+  }
+  abstract class ParteSuperior{
+          +crearPrenda()
+  }
+  abstract class ParteInferior{
+          +crearPrenda()
+  }
+
+  class Pantalon
+  class Pollera
+
+  ParteInferior <|.down. Pantalon
+  ParteInferior <|.down. Pollera
+
+  Categoria <|-down- Calzado
+  Categoria <|-down- Accesorio
+  Categoria <|-down- ParteSuperior
+  Categoria <|-down- ParteInferior
+  @enduml
+#+END_SRC
+
+#+RESULTS:
+[[file:img/qmp.png]]
+
+* Vocabulary
+** pointless
+   - sin sentido, inútil 
+** coupling
+   - acoplado 
+** bulk of sth
+   - mayor parte de, 
