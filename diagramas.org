@@ -1,18 +1,19 @@
 #+BEGIN_SRC plantuml :file assets/diagrama-de-secuencia.png
   @startuml
-  Usuario -> Calzado : cambiarMaterial
-  Usuario -> Calzado : cambiarColor
+  Usuario -> Atuendo : elegirParteSuperior()
+  Usuario -> Atuendo : elegirParteInferior()
+  Usuario -> Atuendo : elegirCalzado()
+  Usuario -> Atuendo : elegirAccesorio()
+  Usuario <-- Atuendo : construirAtuendo()
+
+  Atuendo -> Calzado : elegirColor()
+  Atuendo -> Calzado : elegirMaterial()
+  Atuendo -> Calzado : elegirTipo()
+  Atuendo <-- Calzado : construirPrenda()
   @enduml
 #+END_SRC
 
 #+BEGIN_SRC plantuml :file assets/diagrama-de-clases.png
-  @startuml
-  Usuario -> Calzado : cambiarMaterial
-  Usuario -> Calzado : cambiarColor
-  @enduml
-#+END_SRC
-
-#+BEGIN_SRC plantuml :file img/qmp2.png
   note right of Atuendo: Atuendo a = construirAtuendo()
   note right of Prenda : return new Prenda()
   note top of Accesorio : Prenda p = construirPrenda()
@@ -82,7 +83,7 @@
 #+END_SRC
 
 #+RESULTS:
-[[file:img/qmp2.png]]
+[[file:assets/diagrama-de-clases.png]]
 
 
 #+BEGIN_SRC plantuml :file img/qmp.png
