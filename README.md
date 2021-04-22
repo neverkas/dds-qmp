@@ -1,6 +1,11 @@
-# Diagrama de clases
+# Diagrama de clases (1)
 
 ![diagrama de clases](./assets/diagrama-de-clases.png)
+
+
+# Diagrama de clases (2)
+
+![diagrama de clases](./assets/diagrama-de-clases2.png)
 
 # Diagrama de secuencia
 
@@ -14,12 +19,8 @@ y como existen 4 categorías que engloban a las prendas. Entonces procedemos con
 una clase que contiene acciones para elegir cada una de las categorías.
 
 ```
-  abstract class Atuendo{
+  class Atuendo{
           +construirAtuendo() : Atuendo
-          elegirParteSuperior()
-          elegirParteInferior()
-          elegirCalzado()
-          elegirAccesorio()
   }
 ```
 
@@ -31,32 +32,33 @@ su material (cuero, tela, ...) y el tipo (pantalón, remera corta, ....)
 Estas tareas se las delegamos a la prenda, y las reutilizaremos en construirPrenda() 
 
 ```
-  abstract class Accesorio{
+  class Accesorio{
           +construirPrenda() : Prenda
-          elegirColor()
-          elegirMaterial()
-          elegirTipo()
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
   }
-  abstract class Calzado{
+  class Calzado{
           +construirPrenda() : Prenda
-          elegirColor()
-          elegirMaterial()
-          elegirTipo()
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
   }
-  abstract class ParteSuperior{
+  class ParteSuperior{
           +construirPrenda() : Prenda
-          elegirColor()
-          elegirMaterial()
-          elegirTipo()
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
   }
-
-  abstract class ParteInferior{
+  class ParteInferior{
           +construirPrenda() : Prenda
-          elegirColor()
-          elegirMaterial()
-          elegirTipo()
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
   }
 ```
+
+- - -
 
 ### Prendas
 
@@ -64,11 +66,11 @@ En este tramo final cada prenda puede elegir el color, material y tipo
 de un tipo enum donde podremos agregar las distintas variantes
 
 ```
-  class Prenda{
+  abstract class Prenda{
           +construirPrenda() : Prenda
-          -elegirColor()
-          -elegirMaterial()
-          -elegirTipo()
+          #abstract elegirColor()
+          #abstract elegirMaterial()
+          #abstract elegirTipo()
   }
   
   enum Color

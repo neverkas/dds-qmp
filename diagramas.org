@@ -13,6 +13,9 @@
   @enduml
 #+END_SRC
 
+#+RESULTS:
+[[file:assets/diagrama-de-secuencia.png]]
+
 #+BEGIN_SRC plantuml :file assets/diagrama-de-clases.png
   note right of Atuendo: Atuendo a = construirAtuendo()
   note right of Prenda : return new Prenda()
@@ -23,10 +26,10 @@
   Accesorio <-up- Atuendo
   Calzado <-up- Atuendo
 
-  Prenda <.up. Calzado
-  Prenda <.up. Accesorio
-  Prenda <.up. ParteInferior
-  Prenda <.up. ParteSuperior
+  Prenda <|-up- Calzado
+  Prenda <|-up- Accesorio
+  Prenda <|-up- ParteInferior
+  Prenda <|-up- ParteSuperior
 
   Color <-up- Prenda
   Material <-up- Prenda
@@ -36,45 +39,40 @@
 
   class Cliente
 
-  abstract class Atuendo{
+  class Atuendo{
           +construirAtuendo() : Atuendo
-          elegirParteSuperior()
-          elegirParteInferior()
-          elegirCalzado()
-          elegirAccesorio()
   }
 
-  abstract class Accesorio{
-          +construirPrenda() : Prenda
-          elegirColor()
-          elegirMaterial()
-          elegirTipo()
-  }
-  abstract class Calzado{
-          +construirPrenda() : Prenda
-          elegirColor()
-          elegirMaterial()
-          elegirTipo()
-  }
-  abstract class ParteSuperior{
-          +construirPrenda() : Prenda
-          elegirColor()
-          elegirMaterial()
-          elegirTipo()
-  }
-
-  abstract class ParteInferior{
-          +construirPrenda() : Prenda
-          elegirColor()
-          elegirMaterial()
-          elegirTipo()
-  }
-
-  class Prenda{
+  class Accesorio{
           +construirPrenda() : Prenda
           -elegirColor()
           -elegirMaterial()
           -elegirTipo()
+  }
+  class Calzado{
+          +construirPrenda() : Prenda
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
+  }
+  class ParteSuperior{
+          +construirPrenda() : Prenda
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
+  }
+  class ParteInferior{
+          +construirPrenda() : Prenda
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
+  }
+
+  abstract class Prenda{
+          +construirPrenda() : Prenda
+          #abstract elegirColor()
+          #abstract elegirMaterial()
+          #abstract elegirTipo()
   }
 
   enum Color
@@ -86,48 +84,71 @@
 [[file:assets/diagrama-de-clases.png]]
 
 
-#+BEGIN_SRC plantuml :file img/qmp.png
-  @startuml
-  interface Atuendo{
+#+BEGIN_SRC plantuml :file assets/diagrama-de-clases2.png
+  note right of Atuendo: Atuendo a = construirAtuendo()
+  note right of Prenda : return new Prenda()
+  note top of Accesorio : Prenda p = construirPrenda()
+
+  ParteSuperior <-up- Atuendo
+  ParteInferior <-up- Atuendo
+  Accesorio <-up- Atuendo
+  Calzado <-up- Atuendo
+
+  Prenda <|.up. Calzado
+  Prenda <|.up. Accesorio
+  Prenda <|.up. ParteInferior
+  Prenda <|.up. ParteSuperior
+
+  Color <.up. Prenda
+  Material <.up. Prenda
+  Tipo <.up. Prenda
+
+  Atuendo <-left- Cliente
+
+  class Cliente
+
+  class Atuendo{
           +construirAtuendo() : Atuendo
-          #abstract void elegirColor(Prenda prenda)
-          #abstract void elegirTipo(Prenda prenda)
-          #abstract void elegirMaterial(Prenda prenda)
   }
 
-  abstract class Calzado{
-          +crearPrenda()
+  class Accesorio{
+          +crearPrenda() : Prenda
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
   }
-  abstract class Accesorio{
-          +crearPrenda()
+  class Calzado{
+          +crearPrenda() : Prenda
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
   }
-  abstract class ParteSuperior{
-          +crearPrenda()
-  }
-  abstract class ParteInferior{
-          +crearPrenda()
+  class ParteSuperior{
+          +crearPrenda() : Prenda
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
   }
 
-  class Pantalon
-  class Pollera
+  class ParteInferior{
+          +crearPrenda() : Prenda
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
+  }
 
-  ParteInferior <|.down. Pantalon
-  ParteInferior <|.down. Pollera
+  interface Prenda{
+          +crearPrenda() : Prenda
+          -elegirColor()
+          -elegirMaterial()
+          -elegirTipo()
+  }
 
-  Categoria <|-down- Calzado
-  Categoria <|-down- Accesorio
-  Categoria <|-down- ParteSuperior
-  Categoria <|-down- ParteInferior
-  @enduml
+  enum Color
+  enum Material
+  enum Tipo
 #+END_SRC
 
 #+RESULTS:
-[[file:img/qmp.png]]
+[[file:assets/diagrama-de-clases2.png]]
 
-* Vocabulary
-** pointless
-   - sin sentido, inútil 
-** coupling
-   - acoplado 
-** bulk of sth
-   - mayor parte de, 
