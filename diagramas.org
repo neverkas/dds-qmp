@@ -1,11 +1,11 @@
-#+BEGIN_SRC plantuml :file img/qmp2.png
+#+BEGIN_SRC plantuml :file assets/diagrama-de-secuencia.png
   @startuml
   Usuario -> Calzado : cambiarMaterial
   Usuario -> Calzado : cambiarColor
   @enduml
 #+END_SRC
 
-#+BEGIN_SRC plantuml :file img/qmp2.png
+#+BEGIN_SRC plantuml :file assets/diagrama-de-clases.png
   @startuml
   Usuario -> Calzado : cambiarMaterial
   Usuario -> Calzado : cambiarColor
